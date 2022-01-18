@@ -1,7 +1,8 @@
-﻿using DropCatcher.CustomDropCatchers;
-using DropCatcher.CustomDropCatchers.StockBasedDropCatchers;
-using System;
+﻿using DropCatcher.CustomDropCatchers.StockBasedDropCatchers;
+using DropCatcher.DataModel;
 using System.Threading;
+
+using CustomDropCatcher = DropCatcher.CustomDropCatchers.DropCatcher;
 
 namespace DropCatcher
 {
@@ -16,22 +17,31 @@ namespace DropCatcher
         {
             // var safariZoneDropCatcher = new SafariZoneDropCatcher(thingsToLookOutFor: new string[] { "Evolving", "evolving", "Chilling", "chilling", "marnie", "Marnie" });
             // var gameNerdzDropCatcher = new GameNerdzDropCatcher();
-            var yuyuteiDropCatcherMarvel = new YuyuteiDropCatcher(
-                thingsToLookOutFor: new string[] { "MAR/S89-031MR", "MAR/S89-033MR", "MAR/S89-035MR", "MAR/S89-038MR", "MAR/S89-042MR", "MAR/S89-077MR" },
-                explanations: new string[] { "Spiderman MR", "Captain Marvel MR", "Black Panther MR", "Dr Strange MR", "Black Widow MR", "Scarlet Witch MR" },
-                targetDiv: "//li[@class='card_unit rarity_MR']  ",
-                targetUrl: "https://yuyu-tei.jp/game_ws/sell/sell_price.php?ver=mar&menu=newest");
-
-            var yuyuteiDropCatcherMio = new YuyuteiDropCatcher(
-                thingsToLookOutFor: new string[] { "Sst/W62-051SP" },
-                explanations: new string[] { "Mio SP" },
-                targetDiv: "//li[@class='card_unit rarity_SP']  ",
-                targetUrl: "https://yuyu-tei.jp/game_ws/sell/sell_price.php?name=&vers%5B%5D=kadokawas&rare=&type=&kizu=0");
+            var dropCatchers = new CustomDropCatcher[]
+            {
+                new YuyuteiDropCatcher(
+                    products: YuyuteiProduct.GetMarvelChaseProducts(),
+                    targetDivs: new string[] { StringConstants.TargetDivs.YuyuteiMarvelMR },
+                    targetUrl: StringConstants.TargetUrls.YuyuteiMarvel),
+                new YuyuteiDropCatcher(
+                    products: YuyuteiProduct.GetKadokawaChaseProducts(),
+                    targetDivs: new string[]
+                    {
+                        StringConstants.TargetDivs.YuyuteiKadokawaSP,
+                        StringConstants.TargetDivs.YuyuteiKadokawaSBR,
+                        StringConstants.TargetDivs.YuyuteiKadokawaRRR,
+                    },
+                    targetUrl: StringConstants.TargetUrls.YuyuteiKadokawa),
+            };
+            
 
             while (true)
             {
-                yuyuteiDropCatcherMarvel.CheckForProducts();
-                yuyuteiDropCatcherMio.CheckForProducts();
+                foreach (var dropCatcher in dropCatchers)
+                {
+                    dropCatcher.CheckForProducts();
+                }
+
                 WaitAWhile();
             }
         }

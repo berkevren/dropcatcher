@@ -10,24 +10,17 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
 
         public ListingBasedDropCatcher(
             string[] thingsToLookOutFor,
-            int numberOfProductsOnTargetUrl)
+            int numberOfProductsOnTargetUrl,
+            string targetDiv)
             : base(thingsToLookOutFor)
         {
+            this.DivClasses = new string[] { targetDiv };
             this.NumberOfProductsOnTargetUrl = numberOfProductsOnTargetUrl;
         }
 
         // Gets the products from a target url and returns all the products as a file-ready string.
-        public void CheckForProducts()
+        protected override string FindProductsFromNodes(HtmlAgilityPack.HtmlNodeCollection nodes)
         {
-            this.AssertAllFieldsAreValid();
-
-            var nodes = this.GetNodesFromTargetUrl();
-
-            if (nodes == null)
-            {
-                return;
-            }
-
             var products = new List<string>();
 
             foreach (var rateNode in nodes)
@@ -43,9 +36,11 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
                     && this.ThingsToLookOutFor.Length > 0
                     && this.GoalProductIsFound(fileFormattedProducts, this.ThingsToLookOutFor))
                 {
-                    this.SoundTheHornsAndSendTheRavens(fileFormattedProducts);
+                    return fileFormattedProducts;
                 }
             }
+
+            return string.Empty;
         }
 
         protected override void AssertAllFieldsAreValid()

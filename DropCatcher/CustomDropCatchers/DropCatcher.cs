@@ -7,11 +7,11 @@ using System.Text;
 
 namespace DropCatcher.CustomDropCatchers
 {
-    public class DropCatcher
+    public abstract class DropCatcher
     {
         public string TargetUrl { get; protected set; }
         
-        public string DivClass { get; protected set; }
+        public string[] DivClasses { get; protected set; }
 
         public FileLogger FileLogger { get; protected set; }
 
@@ -24,21 +24,54 @@ namespace DropCatcher.CustomDropCatchers
             this.ThingsToLookOutFor = thingsToLookOutFor;
         }
 
-        // Gets nodes from the target url and returns them as a collection.
-        protected HtmlNodeCollection GetNodesFromTargetUrl()
+        public void CheckForProducts()
+        {
+            this.AssertAllFieldsAreValid();
+
+            var doc = this.LoadUrl();
+            var stringBuidler = new StringBuilder();
+
+            foreach (var divClass in DivClasses)
+            {
+                var nodes = this.GetNodesFromLoadedDoc(doc, divClass);
+
+                if (nodes == null)
+                {
+                    break;
+                }
+
+                stringBuidler.Append(FindProductsFromNodes(nodes));
+            }
+
+            var allProducts = stringBuidler.ToString();
+            if (allProducts != null
+                && !allProducts.Equals(string.Empty))
+            {
+                this.SoundTheHornsAndSendTheRavens(allProducts);
+            }
+        }
+
+        protected abstract string FindProductsFromNodes(HtmlAgilityPack.HtmlNodeCollection nodes);
+
+        protected HtmlDocument LoadUrl()
         {
             var web = new HtmlWeb();
             try
             {
-                var doc = web.Load(TargetUrl);
-                return doc.DocumentNode.SelectNodes(this.DivClass);
+                return web.Load(TargetUrl);
             }
-            catch(WebException e)
+            catch (WebException e)
             {
                 // Internet connection interrupted. Try again in five minutes.
                 Thread.Sleep(300000);
-                return this.GetNodesFromTargetUrl();
+                return this.LoadUrl();
             }
+        }
+
+        // Gets nodes from the target url and returns them as a collection.
+        protected HtmlNodeCollection GetNodesFromLoadedDoc(HtmlDocument doc, string divClass)
+        {
+            return doc.DocumentNode.SelectNodes(divClass);
         }
 
         // Converts the list of nodes parsed from html to a file-ready string.
@@ -65,7 +98,7 @@ namespace DropCatcher.CustomDropCatchers
         protected virtual void AssertAllFieldsAreValid()
         {
             if (this.TargetUrl == null
-                || this.DivClass == null
+                || this.DivClasses == null
                 || this.FileLogger == null
                 || this.AlarmSounder == null)
             {

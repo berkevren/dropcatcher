@@ -7,10 +7,10 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
         public GameNerdzDropCatcher(string[] thingsToLookOutFor = null)
             : base(
                   thingsToLookOutFor,
-                  numberOfProductsOnTargetUrl: 20)
+                  numberOfProductsOnTargetUrl: 20,
+                  targetDiv: "//h4[@class='card-title']  ")
         {
             this.TargetUrl = "https://www.gamenerdz.com/pokemon?sort=newest";
-            this.DivClass = "//h4[@class='card-title']  ";
             this.FileLogger = new FileLogger(path: "C:/Users/beabbaso/Documents/GameNerdzProductList.txt");
             this.AlarmSounder = new AlarmSounder(
                 alarmSoundPath: "C:/Users/beabbaso/Documents/gameNerdzDrop.wav",
