@@ -1,13 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "jEmMruqxoJaCy3T0QLhHqHdM7WlGz42lCFUDEi0V3EVbY7PwU4oafgIh5uLiV36KdSdQ/Pml6fnvFuddrmv8oA==",
+  "dgSpecHash": "fuafDdp7YyaMFUYCqhFdc9QvzQOaxdE10nxrcUGg2GiIi14zb6j/tXTNV88k2HGv+ohqVD+TI3Uh0we1TEwg7Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\berka\\Documents\\DropCatcher\\DropCatcher\\DropCatcher.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\berka\\.nuget\\packages\\htmlagilitypack\\1.11.32\\htmlagilitypack.1.11.32.nupkg.sha512",
     "C:\\Users\\berka\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
+    "C:\\Users\\berka\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\berka\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\berka\\.nuget\\packages\\system.drawing.common\\5.0.0\\system.drawing.common.5.0.0.nupkg.sha512",
+    "C:\\Users\\berka\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
+    "C:\\Users\\berka\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
+    "C:\\Users\\berka\\.nuget\\packages\\system.speech\\6.0.0\\system.speech.6.0.0.nupkg.sha512",
     "C:\\Users\\berka\\.nuget\\packages\\system.windows.extensions\\5.0.0\\system.windows.extensions.5.0.0.nupkg.sha512"
   ],
   "logs": []

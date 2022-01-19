@@ -1,32 +1,32 @@
 ﻿using System;
-using System.Media;
 using System.Net;
 using System.Net.Mail;
+using System.Speech.Synthesis;
 
 namespace DropCatcher
 {
     public class AlarmSounder
     {
-        private readonly string alarmSoundPath;
         private readonly string linkToProducts;
         private readonly string messageSubject;
         private readonly SmtpClient smtpClient;
 
+        public static readonly SpeechSynthesizer Synthesizer = new();
+
         public AlarmSounder(
-            string alarmSoundPath,
             string linkToProducts,
             string messageSubject)
         {
-            this.alarmSoundPath = alarmSoundPath;
             this.linkToProducts = linkToProducts;
             this.messageSubject = messageSubject;
             this.smtpClient = CreateSmtpClient();
+            Synthesizer.SetOutputToDefaultAudioDevice();
+            Synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Teen);
         }
 
-        public void SoundTheAlarm()
+        public void SoundTheAlarm(string alarm)
         {
-            var alarmSound = new SoundPlayer(this.alarmSoundPath);
-            alarmSound.Play();
+            Synthesizer.Speak(alarm);
         }
 
         public void SendEmail(string products)

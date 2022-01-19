@@ -43,3 +43,4 @@ C:\Users\berka\Documents\DropCatcher\DropCatcher\obj\Debug\netcoreapp3.1\DropCat
 C:\Users\berka\Documents\DropCatcher\DropCatcher\obj\Debug\netcoreapp3.1\DropCatcher.dll
 C:\Users\berka\Documents\DropCatcher\DropCatcher\obj\Debug\netcoreapp3.1\DropCatcher.pdb
 C:\Users\berka\Documents\DropCatcher\DropCatcher\obj\Debug\netcoreapp3.1\DropCatcher.genruntimeconfig.cache
+C:\Users\berka\Documents\DropCatcher\DropCatcher\obj\Debug\netcoreapp3.1\DropCatcher.d-bfalse.GeneratedMSBuildEditorConfig.editorconfig

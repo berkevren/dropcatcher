@@ -1,7 +1,6 @@
 ﻿using DropCatcher.CustomDropCatchers.StockBasedDropCatchers;
 using DropCatcher.DataModel;
 using System.Threading;
-
 using CustomDropCatcher = DropCatcher.CustomDropCatchers.DropCatcher;
 
 namespace DropCatcher
@@ -15,6 +14,7 @@ namespace DropCatcher
 
         public static void Main()
         {
+
             // var safariZoneDropCatcher = new SafariZoneDropCatcher(thingsToLookOutFor: new string[] { "Evolving", "evolving", "Chilling", "chilling", "marnie", "Marnie" });
             // var gameNerdzDropCatcher = new GameNerdzDropCatcher();
             var dropCatchers = new CustomDropCatcher[]
@@ -29,7 +29,7 @@ namespace DropCatcher
                     {
                         StringConstants.TargetDivs.YuyuteiKadokawaSP,
                         StringConstants.TargetDivs.YuyuteiKadokawaSBR,
-                        StringConstants.TargetDivs.YuyuteiKadokawaRRR,
+                        // StringConstants.TargetDivs.YuyuteiKadokawaRRR,
                     },
                     targetUrl: StringConstants.TargetUrls.YuyuteiKadokawa),
             };

@@ -8,8 +8,8 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
     public class YuyuteiDropCatcher : StockBasedDropCatcher
     {
         private const string FileLoggerPath = "C:/Users/berka/Documents/YuyuteiProductList.txt";
-        private const string AlarmSoundPath = "C:/Users/berka/Documents/yuyuteidrop.wav";
-        private const string AlarmMessageSubject = "New Yuyutei Drop!";
+        private const string AlarmMessageYuyutei = "Yuyu Tay Drop! Yuyu Tay Drop! Yuyu Tay Drop!";
+        private const string EmailSubject  = "Yuyutei Drop!";
 
         private readonly string[] productNames;
 
@@ -17,7 +17,9 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
             string[] targetDivs,
             string targetUrl,
             YuyuteiProduct[] products)
-            : base(GetIds(products))
+            : base(
+                  GetIds(products),
+                  AlarmMessageYuyutei)
         {
             if (products == null)
             {
@@ -28,9 +30,8 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
             this.DivClasses = targetDivs;
             this.FileLogger = new FileLogger(path: FileLoggerPath);
             this.AlarmSounder = new AlarmSounder(
-                alarmSoundPath: AlarmSoundPath,
                 linkToProducts: this.TargetUrl,
-                messageSubject: AlarmMessageSubject);
+                messageSubject: EmailSubject);
 
             productNames = new string[products.Length];
             for (int i = 0; i < products.Length; i++)

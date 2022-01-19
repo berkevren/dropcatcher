@@ -20,6 +20,7 @@
                 BlackPantherMR,
                 DrStrangeMR,
                 ScarletWitchMR,
+                BlackWidowMR,
             };
         }
 
@@ -29,7 +30,7 @@
             {
                 MioSP,
                 YukiSBR,
-                MioRRR,
+                // MioRRR,
             };
         }
 

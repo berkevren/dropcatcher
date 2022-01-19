@@ -19,9 +19,14 @@ namespace DropCatcher.CustomDropCatchers
 
         public string[] ThingsToLookOutFor { get; protected set; }
 
-        public DropCatcher(string[] thingsToLookOutFor)
+        public string AlarmMessage { get; protected set; }
+
+        public DropCatcher(
+            string[] thingsToLookOutFor,
+            string alarmMessageSubject)
         {
             this.ThingsToLookOutFor = thingsToLookOutFor;
+            this.AlarmMessage = alarmMessageSubject;
         }
 
         public void CheckForProducts()
@@ -91,7 +96,7 @@ namespace DropCatcher.CustomDropCatchers
 
         protected void SoundTheHornsAndSendTheRavens(string products)
         {
-            this.AlarmSounder.SoundTheAlarm();
+            this.AlarmSounder.SoundTheAlarm(this.AlarmMessage);
             this.AlarmSounder.SendEmail(products);
         }
 

@@ -7,8 +7,11 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
     public class StockBasedDropCatcher : DropCatcher
     {
         public StockBasedDropCatcher(
-            string[] thingsToLookOutFor)
-            : base(thingsToLookOutFor)
+            string[] thingsToLookOutFor,
+            string alarmMessage)
+            : base(
+                  thingsToLookOutFor,
+                  alarmMessage)
         {
         }
 

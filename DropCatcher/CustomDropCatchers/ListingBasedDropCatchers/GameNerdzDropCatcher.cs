@@ -8,12 +8,12 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
             : base(
                   thingsToLookOutFor,
                   numberOfProductsOnTargetUrl: 20,
-                  targetDiv: "//h4[@class='card-title']  ")
+                  targetDiv: "//h4[@class='card-title']  ",
+                  alarmMessage: "New Game Nerdz Drop!")
         {
             this.TargetUrl = "https://www.gamenerdz.com/pokemon?sort=newest";
             this.FileLogger = new FileLogger(path: "C:/Users/beabbaso/Documents/GameNerdzProductList.txt");
             this.AlarmSounder = new AlarmSounder(
-                alarmSoundPath: "C:/Users/beabbaso/Documents/gameNerdzDrop.wav",
                 linkToProducts: this.TargetUrl,
                 messageSubject: "New Game Nerdz Drop!");
         }

@@ -11,8 +11,11 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
         public ListingBasedDropCatcher(
             string[] thingsToLookOutFor,
             int numberOfProductsOnTargetUrl,
-            string targetDiv)
-            : base(thingsToLookOutFor)
+            string targetDiv,
+            string alarmMessage)
+            : base(
+                  thingsToLookOutFor,
+                  alarmMessage)
         {
             this.DivClasses = new string[] { targetDiv };
             this.NumberOfProductsOnTargetUrl = numberOfProductsOnTargetUrl;
