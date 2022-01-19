@@ -1,7 +1,6 @@
 ﻿using DropCatcher.DataModel;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
 {

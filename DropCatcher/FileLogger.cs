@@ -15,9 +15,7 @@ namespace DropCatcher
 
         public bool WriteFileIfNewProductIsFound(string newProducts, int numberOfProductsOnPage)
         {
-            string[] fileContent;
-            string[] latestProducts;
-
+            string[] fileContent, latestProducts;
 
             if (this.TryReadFile(out fileContent)
                 && fileContent.Length > numberOfProductsOnPage)

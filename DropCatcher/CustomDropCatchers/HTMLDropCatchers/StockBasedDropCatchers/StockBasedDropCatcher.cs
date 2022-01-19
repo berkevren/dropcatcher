@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
 {
-    public class StockBasedDropCatcher : HTMLDropCatcher
+    public abstract class StockBasedDropCatcher : HTMLDropCatcher
     {
         public StockBasedDropCatcher(
             string[] targetDivs,
@@ -37,9 +35,6 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
             return string.Empty;
         }
 
-        protected virtual List<string> GetInStockProductsFromNodes(HtmlAgilityPack.HtmlNodeCollection nodes)
-        {
-            return new List<string>();
-        }
+        protected abstract List<string> GetInStockProductsFromNodes(HtmlAgilityPack.HtmlNodeCollection nodes);
     }
 }

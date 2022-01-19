@@ -30,7 +30,7 @@ namespace DropCatcher
                     {
                         StringConstants.TargetDivs.YuyuteiKadokawaSP,
                         StringConstants.TargetDivs.YuyuteiKadokawaSBR,
-                        // StringConstants.TargetDivs.YuyuteiKadokawaRRR,
+                        StringConstants.TargetDivs.YuyuteiKadokawaRRR,
                     },
                     targetUrl: StringConstants.TargetUrls.YuyuteiKadokawa),
                 new AmiamiDropCatcher(AmiamiChaseProduct.MarvelTrialDeck),

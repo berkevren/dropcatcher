@@ -19,9 +19,9 @@ namespace DropCatcher.DataModel
 
         public bool IsInStock()
         {
-            return this.item.cart_type.Equals(7)
-                || this.item.cart_type.Equals(8)
-                || this.item.cart_type.Equals(9);
+            return this.item.cart_type.Equals(7) // back-order
+                || this.item.cart_type.Equals(8) // pre-order
+                || this.item.cart_type.Equals(9);// order
         }
     }
 
@@ -30,7 +30,7 @@ namespace DropCatcher.DataModel
         public string webUrl;
         public string requestUrl;
 
-        public readonly static AmiamiChaseProduct MarvelTrialDeck = new AmiamiChaseProduct
+        public readonly static AmiamiChaseProduct MarvelTrialDeck = new()
         {
             webUrl = "https://www.amiami.com/eng/detail/?scode=CARD-00015766",
             requestUrl = "https://api.amiami.com/api/v1.0/item?gcode=CARD-00015766&lang=eng&mcode=7001687591&ransu=vTvY43w9rrKK0EMkXxuFduO2d1SJmk30",

@@ -10,8 +10,7 @@ namespace DropCatcher
         private readonly string linkToProducts;
         private readonly string messageSubject;
         private readonly SmtpClient smtpClient;
-
-        public static readonly SpeechSynthesizer Synthesizer = new();
+        private readonly SpeechSynthesizer synthesizer;
 
         public AlarmSounder(
             string linkToProducts,
@@ -20,33 +19,41 @@ namespace DropCatcher
             this.linkToProducts = linkToProducts;
             this.messageSubject = messageSubject;
             this.smtpClient = CreateSmtpClient();
-            Synthesizer.SetOutputToDefaultAudioDevice();
-            Synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Teen);
+            this.synthesizer = new();
+            this.synthesizer.SetOutputToDefaultAudioDevice();
+            this.synthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Teen);
         }
 
         public void SoundTheAlarm(string alarm)
         {
-            Synthesizer.Speak(alarm);
+            this.synthesizer.Speak(alarm);
         }
 
         public void SendEmail(string products)
         {
-            MailMessage message = new MailMessage();
-            message.From = new MailAddress("berkzeguet@hotmail.com");
-            message.Subject = this.messageSubject;
-            message.Body = String.Concat(this.linkToProducts, "\n", products);
-            message.To.Add("berkabbasoglu@hotmail.com");
-            message.To.Add("cemekmekcioglu@icloud.com");
+            var message = new MailMessage
+            {
+                From = new MailAddress(StringConstants.EmailAddresses.Berkzeguet),
+                Subject = this.messageSubject,
+                Body = String.Concat(this.linkToProducts, "\n", products)
+            };
+            message.To.Add(StringConstants.EmailAddresses.BerkAbbasoglu);
+            message.To.Add(StringConstants.EmailAddresses.CemEkm);
 
             this.smtpClient.Send(message);
         }
 
         private static SmtpClient CreateSmtpClient()
         {
-            return new SmtpClient("smtp.live.com")
+            return new SmtpClient
             {
+                Host = "smtp.live.com",
                 Port = 587,
-                Credentials = new NetworkCredential("berkzeguet@hotmail.com", "=,E':'_w*VWKg8B"),
+                Credentials = new NetworkCredential
+                {
+                    UserName = StringConstants.EmailAddresses.Berkzeguet,
+                    Password = StringConstants.EmailAddresses.BerkzeguetPassword,
+                },
                 EnableSsl = true,
             };
         }

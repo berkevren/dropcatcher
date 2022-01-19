@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DropCatcher
+﻿namespace DropCatcher
 {
     public class StringConstants
     {
+        public static class EmailAddresses
+        {
+            public const string Berkzeguet = "berkzeguet@hotmail.com";
+            public const string BerkzeguetPassword = "=,E':'_w*VWKg8B";
+            public const string BerkAbbasoglu = "berkabbasoglu@hotmail.com";
+            public const string CemEkm = "cemekmekcioglu@icloud.com";
+        }
         public static class TargetDivs
         {
             public static readonly string YuyuteiMarvelMR = "//li[@class='card_unit rarity_MR']  ";

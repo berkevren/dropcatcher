@@ -1,13 +1,6 @@
 ﻿using DropCatcher.DataModel;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
 {
@@ -32,14 +25,13 @@ namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
 
         public override void CheckForProducts()
         {
-            var uri = new Uri(this.RequestUrl);
-            var request = WebRequest.Create(uri);
+            var request = WebRequest.Create(this.RequestUrl);
             request.ContentType = "application/json";
             request.Headers.Add("x-user-key", "amiami_dev");
-            using System.IO.Stream s = request.GetResponse().GetResponseStream();
-            using System.IO.StreamReader sr = new System.IO.StreamReader(s);
-            var jsonResponse = sr.ReadToEnd();
-            var product = JsonConvert.DeserializeObject<AmiamiProduct>(jsonResponse);
+            using System.IO.Stream stream = request.GetResponse().GetResponseStream();
+            using System.IO.StreamReader streamReader = new System.IO.StreamReader(stream);
+            var response = streamReader.ReadToEnd();
+            var product = JsonConvert.DeserializeObject<AmiamiProduct>(response);
             if (product.IsInStock())
             {
                 this.SoundTheHornsAndSendTheRavens(AlarmMessageAmiami + product.item.gname);
