@@ -15,10 +15,24 @@ namespace DropCatcher
 
         public static void Main()
         {
+            var dropCatchers = GetDropCatchers();
+            
+            while (true)
+            {
+                foreach (var dropCatcher in dropCatchers)
+                {
+                    dropCatcher.CheckForProducts();
+                }
 
+                WaitAWhile();
+            }
+        }
+
+        public static CustomDropCatcher[] GetDropCatchers()
+        {
             // var safariZoneDropCatcher = new SafariZoneDropCatcher(thingsToLookOutFor: new string[] { "Evolving", "evolving", "Chilling", "chilling", "marnie", "Marnie" });
             // var gameNerdzDropCatcher = new GameNerdzDropCatcher();
-            var dropCatchers = new CustomDropCatcher[]
+            return new CustomDropCatcher[]
             {
                 new YuyuteiDropCatcher(
                     products: YuyuteiProduct.GetMarvelChaseProducts(),
@@ -35,17 +49,6 @@ namespace DropCatcher
                     targetUrl: StringConstants.TargetUrls.YuyuteiKadokawa),
                 new AmiamiDropCatcher(AmiamiChaseProduct.MarvelTrialDeck),
             };
-            
-
-            while (true)
-            {
-                foreach (var dropCatcher in dropCatchers)
-                {
-                    dropCatcher.CheckForProducts();
-                }
-
-                WaitAWhile();
-            }
         }
 
         public static void WaitAWhile()

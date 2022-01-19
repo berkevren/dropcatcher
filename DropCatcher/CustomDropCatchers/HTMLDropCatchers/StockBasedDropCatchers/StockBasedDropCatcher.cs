@@ -9,15 +9,13 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
             string[] thingsToLookOutFor,
             string targetUrl,
             string alarmMessageSubject,
-            string emailSubject,
-            string fileLoggerPath)
+            string emailSubject)
             : base(
                   targetDivs,
                   thingsToLookOutFor,
                   targetUrl,
                   alarmMessageSubject,
-                  emailSubject,
-                  fileLoggerPath)
+                  emailSubject)
         {
         }
 
@@ -28,7 +26,6 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
             if (inStockProducts.Count > 0)
             {
                 var formattedInStockProducts = this.ToFileFormat(inStockProducts);
-                this.FileLogger.WriteToFile("\nIN STOCK PROCUTS - " + formattedInStockProducts);
                 return formattedInStockProducts;
             }
 

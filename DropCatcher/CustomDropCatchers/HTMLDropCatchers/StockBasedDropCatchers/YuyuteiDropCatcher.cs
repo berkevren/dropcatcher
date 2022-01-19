@@ -1,4 +1,5 @@
 ﻿using DropCatcher.DataModel;
+using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 
@@ -6,11 +7,11 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
 {
     public class YuyuteiDropCatcher : StockBasedDropCatcher
     {
-        private const string FileLoggerPath = "C:/Users/berka/Documents/YuyuteiProductList.txt";
         private const string AlarmMessageYuyutei = "Yuyu Tay Drop! Yuyu Tay Drop! Yuyu Tay Drop!";
         private const string EmailSubject  = "Yuyutei Drop!";
 
         private readonly string[] productNames;
+        private List<string> foundProductNames;
 
         public YuyuteiDropCatcher(
             string[] targetDivs,
@@ -21,8 +22,7 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
                   GetIds(products),
                   targetUrl,
                   AlarmMessageYuyutei,
-                  EmailSubject,
-                  FileLoggerPath)
+                  EmailSubject)
         {
             if (products == null)
             {
@@ -34,9 +34,11 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
             {
                 productNames[i] = products[i].Name;
             }
+
+            foundProductNames = new();
         }
 
-        protected override List<string> GetInStockProductsFromNodes(HtmlAgilityPack.HtmlNodeCollection nodes)
+        protected override List<string> GetInStockProductsFromNodes(HtmlNodeCollection nodes)
         {
             var inStockProducts = new List<string>();
 
@@ -47,7 +49,12 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
                     if (rateNode.InnerText.Contains(this.ThingsToLookOutFor[i])
                         && IsProductInStock(rateNode))
                     {
-                        inStockProducts.Add(productNames[i]);
+                        if (!foundProductNames.Contains(productNames[i]))
+                        {
+                            foundProductNames.Add(productNames[i]);
+                            inStockProducts.Add(productNames[i]);
+                        }
+                        
                         break;
                     }
                 }
@@ -67,7 +74,7 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
             return ids;
         }
 
-        private bool IsProductInStock(HtmlAgilityPack.HtmlNode node)
+        private bool IsProductInStock(HtmlNode node)
         {
             return !node.ChildNodes[5].InnerHtml.Contains("btn_sold_out.png");
         }

@@ -8,6 +8,8 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
     {
         public int NumberOfProductsOnTargetUrl { get; protected set; }
 
+        public FileLogger FileLogger { get; protected set; }
+
         public ListingBasedDropCatcher(
             string targetDiv,
             string[] thingsToLookOutFor,
@@ -21,10 +23,10 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
                   thingsToLookOutFor,
                   targetUrl,
                   alarmMessage,
-                  emailSubject,
-                  fileLoggerPath)
+                  emailSubject)
         {
             this.NumberOfProductsOnTargetUrl = numberOfProductsOnTargetUrl;
+            this.FileLogger = new FileLogger(path: fileLoggerPath);
         }
 
         // Gets the products from a target url and returns all the products as a file-ready string.
@@ -56,7 +58,7 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
         {
             if (this.NumberOfProductsOnTargetUrl <= 0)
             {
-                throw new NullReferenceException("all fields must be set!");
+                throw new FormatException("NumberOfProductsOnTargetUrl must be > 0!");
             }
 
             base.AssertAllFieldsAreValid();

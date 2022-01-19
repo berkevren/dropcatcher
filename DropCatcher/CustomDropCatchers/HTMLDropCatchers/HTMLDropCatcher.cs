@@ -19,13 +19,11 @@ namespace DropCatcher.CustomDropCatchers
             string[] thingsToLookOutFor,
             string targetUrl,
             string alarmMessageSubject,
-            string emailSubject,
-            string fileLoggerPath)
+            string emailSubject)
             : base(
                   targetUrl,
                   alarmMessageSubject,
-                  emailSubject,
-                  fileLoggerPath)
+                  emailSubject)
         {
             this.TargetDivs = targetDivs;
             this.ThingsToLookOutFor = thingsToLookOutFor;
@@ -58,7 +56,7 @@ namespace DropCatcher.CustomDropCatchers
             }
         }
 
-        protected abstract string FindProductsFromNodes(HtmlAgilityPack.HtmlNodeCollection nodes);
+        protected abstract string FindProductsFromNodes(HtmlNodeCollection nodes);
 
         protected HtmlDocument LoadUrl()
         {
@@ -67,7 +65,7 @@ namespace DropCatcher.CustomDropCatchers
             {
                 return web.Load(TargetUrl);
             }
-            catch (WebException e)
+            catch (WebException)
             {
                 // Internet connection interrupted. Try again in five minutes.
                 Thread.Sleep(300000);
@@ -96,15 +94,14 @@ namespace DropCatcher.CustomDropCatchers
             return stringBuilder.ToString();
         }
 
-        protected virtual void AssertAllFieldsAreValid()
+        protected override void AssertAllFieldsAreValid()
         {
-            if (this.TargetUrl == null
-                || this.TargetDivs == null
-                || this.FileLogger == null
-                || this.AlarmSounder == null)
+            if (this.TargetDivs == null)
             {
-                throw new NullReferenceException("all fields must be set!");
+                throw new NullReferenceException("TargetDivs must be set!");
             }
+
+            base.AssertAllFieldsAreValid();
         }
 
         protected bool GoalProductIsFound(string products, string[] goalProducts)

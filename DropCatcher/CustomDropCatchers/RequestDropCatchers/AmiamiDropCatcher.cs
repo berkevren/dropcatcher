@@ -4,38 +4,46 @@ using System.Net;
 
 namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
 {
-    public class AmiamiDropCatcher : DropCatcher
+    public class AmiamiDropCatcher : RequestDropCatcher
     {
         private const string AlarmMessageAmiami = "Ah me ah me Drop! Ah me ah me Drop! Ah me ah me Drop!";
         private const string EmailSubject = "Amiami Drop!";
-        private const string FileLoggerPath = "C:/Users/berka/Documents/AmiamiProductList.txt";
 
         protected string RequestUrl { get; private set; }
         
-        public AmiamiDropCatcher(
-            AmiamiChaseProduct amiamiChaseProduct)
+        public AmiamiDropCatcher(AmiamiChaseProduct amiamiChaseProduct)
             : base(
                   amiamiChaseProduct.webUrl,
                   AlarmMessageAmiami,
-                  EmailSubject,
-                  FileLoggerPath)
+                  EmailSubject)
         {
             this.RequestUrl = amiamiChaseProduct.requestUrl;
         }
 
-        public override void CheckForProducts()
+        protected override WebRequest CreateRequest()
         {
             var request = WebRequest.Create(this.RequestUrl);
             request.ContentType = "application/json";
             request.Headers.Add("x-user-key", "amiami_dev");
-            using System.IO.Stream stream = request.GetResponse().GetResponseStream();
-            using System.IO.StreamReader streamReader = new System.IO.StreamReader(stream);
-            var response = streamReader.ReadToEnd();
-            var product = JsonConvert.DeserializeObject<AmiamiProduct>(response);
-            if (product.IsInStock())
+
+            return request;
+        }
+
+        protected override AmiamiProduct SerializeJSONReponse(string response)
+        {
+            return JsonConvert.DeserializeObject<AmiamiProduct>(response);
+        }
+
+        protected override bool IsProductInStock(object product, out string productName)
+        {
+            if (product is AmiamiProduct amiamiProduct)
             {
-                this.SoundTheHornsAndSendTheRavens(AlarmMessageAmiami + product.item.gname);
+                productName = amiamiProduct.item.gname;
+                return amiamiProduct.IsInStock();
             }
+
+            productName = string.Empty;
+            return false;
         }
     }
 }
