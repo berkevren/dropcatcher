@@ -6,16 +6,14 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
     {
         public GameNerdzDropCatcher(string[] thingsToLookOutFor = null)
             : base(
-                  thingsToLookOutFor,
-                  numberOfProductsOnTargetUrl: 20,
                   targetDiv: "//h4[@class='card-title']  ",
-                  alarmMessage: "New Game Nerdz Drop!")
+                  thingsToLookOutFor: thingsToLookOutFor,
+                  numberOfProductsOnTargetUrl: 20,
+                  targetUrl: "https://www.gamenerdz.com/pokemon?sort=newest",
+                  alarmMessage: "New Game Nerdz Drop!",
+                  emailSubject: "New Game Nerdz Drop!",
+                  fileLoggerPath: "C:/Users/beabbaso/Documents/GameNerdzProductList.txt")
         {
-            this.TargetUrl = "https://www.gamenerdz.com/pokemon?sort=newest";
-            this.FileLogger = new FileLogger(path: "C:/Users/beabbaso/Documents/GameNerdzProductList.txt");
-            this.AlarmSounder = new AlarmSounder(
-                linkToProducts: this.TargetUrl,
-                messageSubject: "New Game Nerdz Drop!");
         }
 
         protected override string ToFileFormat(List<string> products)

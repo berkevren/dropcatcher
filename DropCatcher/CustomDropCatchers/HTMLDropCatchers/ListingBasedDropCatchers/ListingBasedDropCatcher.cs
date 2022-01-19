@@ -4,20 +4,26 @@ using System.Text;
 
 namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
 {
-    public class ListingBasedDropCatcher : DropCatcher
+    public class ListingBasedDropCatcher : HTMLDropCatcher
     {
         public int NumberOfProductsOnTargetUrl { get; protected set; }
 
         public ListingBasedDropCatcher(
+            string targetDiv,
             string[] thingsToLookOutFor,
             int numberOfProductsOnTargetUrl,
-            string targetDiv,
-            string alarmMessage)
+            string targetUrl,
+            string alarmMessage,
+            string emailSubject,
+            string fileLoggerPath)
             : base(
+                  new string[] { targetDiv },
                   thingsToLookOutFor,
-                  alarmMessage)
+                  targetUrl,
+                  alarmMessage,
+                  emailSubject,
+                  fileLoggerPath)
         {
-            this.DivClasses = new string[] { targetDiv };
             this.NumberOfProductsOnTargetUrl = numberOfProductsOnTargetUrl;
         }
 

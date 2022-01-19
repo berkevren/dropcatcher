@@ -25,3 +25,4 @@ C:\Users\berka\Documents\DropCatcher\DropCatcher\obj\Debug\net5.0\DropCatcher.dl
 C:\Users\berka\Documents\DropCatcher\DropCatcher\obj\Debug\net5.0\ref\DropCatcher.dll
 C:\Users\berka\Documents\DropCatcher\DropCatcher\obj\Debug\net5.0\DropCatcher.pdb
 C:\Users\berka\Documents\DropCatcher\DropCatcher\obj\Debug\net5.0\DropCatcher.genruntimeconfig.cache
+C:\Users\berka\Documents\DropCatcher\DropCatcher\bin\Debug\net5.0\Newtonsoft.Json.dll

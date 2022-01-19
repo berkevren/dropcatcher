@@ -4,14 +4,22 @@ using System.Text;
 
 namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
 {
-    public class StockBasedDropCatcher : DropCatcher
+    public class StockBasedDropCatcher : HTMLDropCatcher
     {
         public StockBasedDropCatcher(
+            string[] targetDivs,
             string[] thingsToLookOutFor,
-            string alarmMessage)
+            string targetUrl,
+            string alarmMessageSubject,
+            string emailSubject,
+            string fileLoggerPath)
             : base(
+                  targetDivs,
                   thingsToLookOutFor,
-                  alarmMessage)
+                  targetUrl,
+                  alarmMessageSubject,
+                  emailSubject,
+                  fileLoggerPath)
         {
         }
 

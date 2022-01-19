@@ -1,4 +1,5 @@
-﻿using DropCatcher.CustomDropCatchers.StockBasedDropCatchers;
+﻿using DropCatcher.CustomDropCatchers.RequestDropCatchers;
+using DropCatcher.CustomDropCatchers.StockBasedDropCatchers;
 using DropCatcher.DataModel;
 using System.Threading;
 using CustomDropCatcher = DropCatcher.CustomDropCatchers.DropCatcher;
@@ -32,6 +33,7 @@ namespace DropCatcher
                         // StringConstants.TargetDivs.YuyuteiKadokawaRRR,
                     },
                     targetUrl: StringConstants.TargetUrls.YuyuteiKadokawa),
+                new AmiamiDropCatcher(AmiamiChaseProduct.MarvelTrialDeck),
             };
             
 

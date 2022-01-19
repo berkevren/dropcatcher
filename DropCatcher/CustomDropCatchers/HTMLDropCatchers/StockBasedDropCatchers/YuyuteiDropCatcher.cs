@@ -18,20 +18,17 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
             string targetUrl,
             YuyuteiProduct[] products)
             : base(
+                  targetDivs,
                   GetIds(products),
-                  AlarmMessageYuyutei)
+                  targetUrl,
+                  AlarmMessageYuyutei,
+                  EmailSubject,
+                  FileLoggerPath)
         {
             if (products == null)
             {
                 throw new FormatException("null products!");
             }
-
-            this.TargetUrl = targetUrl;
-            this.DivClasses = targetDivs;
-            this.FileLogger = new FileLogger(path: FileLoggerPath);
-            this.AlarmSounder = new AlarmSounder(
-                linkToProducts: this.TargetUrl,
-                messageSubject: EmailSubject);
 
             productNames = new string[products.Length];
             for (int i = 0; i < products.Length; i++)
