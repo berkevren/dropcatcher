@@ -48,6 +48,7 @@ namespace DropCatcher
                     },
                     targetUrl: StringConstants.TargetUrls.YuyuteiKadokawa),
                 new AmiamiDropCatcher(AmiamiChaseProduct.MarvelTrialDeck),
+                new AmiamiDropCatcher(AmiamiChaseProduct.PokemonVMAXClimaxBoosterBox),
             };
         }
 
