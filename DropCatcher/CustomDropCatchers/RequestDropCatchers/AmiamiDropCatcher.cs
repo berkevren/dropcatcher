@@ -1,5 +1,6 @@
 ﻿using DropCatcher.DataModel;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Net;
 
 namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
@@ -8,6 +9,7 @@ namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
     {
         private const string AlarmMessageAmiami = "Ah me ah me Drop! Ah me ah me Drop! Ah me ah me Drop!";
         private const string EmailSubject = "Amiami Drop!";
+        private List<string> foundProductNames;
 
         protected string RequestUrl { get; private set; }
         
@@ -18,6 +20,7 @@ namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
                   EmailSubject)
         {
             this.RequestUrl = amiamiChaseProduct.requestUrl;
+            this.foundProductNames = new();
         }
 
         protected override WebRequest CreateRequest()
@@ -39,7 +42,12 @@ namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
             if (product is AmiamiProduct amiamiProduct)
             {
                 productName = amiamiProduct.item.gname;
-                return amiamiProduct.IsInStock();
+                if (amiamiProduct.IsInStock()
+                    && !this.foundProductNames.Contains(amiamiProduct.item.gname))
+                {
+                    this.foundProductNames.Add(amiamiProduct.item.gname);
+                    return true;
+                }
             }
 
             productName = string.Empty;
