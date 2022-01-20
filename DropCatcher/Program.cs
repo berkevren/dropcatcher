@@ -47,10 +47,11 @@ namespace DropCatcher
                         StringConstants.TargetDivs.YuyuteiKadokawaRRR,
                     },
                     targetUrl: StringConstants.TargetUrls.YuyuteiKadokawa),
-                new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarzMarvelTrialDeck),
-                new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarzHololiveBoosterBox),
-                new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarzHololiveTrialDeck),
-                new AmiamiDropCatcher(AmiamiChaseProduct.PokemonVMAXClimaxBoosterBox),
+                new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.MarvelTrialDeck),
+                new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveBoosterBox),
+                new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveTrialDeck),
+                new AmiamiDropCatcher(AmiamiChaseProduct.Pokemon.VMAXClimaxBoosterBox),
+                new AmiamiDropCatcher(AmiamiChaseProduct.Pokemon.TwentyFifthAnniversaryBoosterBox),
             };
         }
 
