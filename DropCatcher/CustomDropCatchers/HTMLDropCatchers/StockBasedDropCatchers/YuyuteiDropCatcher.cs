@@ -76,7 +76,7 @@ namespace DropCatcher.CustomDropCatchers.StockBasedDropCatchers
 
         private bool IsProductInStock(HtmlNode node)
         {
-            return node.ChildNodes[5].InnerHtml.Contains("btn_sold_out.png");
+            return !node.ChildNodes[5].InnerHtml.Contains("btn_sold_out.png");
         }
     }
 }
