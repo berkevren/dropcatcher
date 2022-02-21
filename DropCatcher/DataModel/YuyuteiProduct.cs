@@ -16,6 +16,17 @@
             return new YuyuteiProduct[]
             {
                 SpiderManMR,
+                CaptainMarvelMR,
+                BlackPantherMR,
+                DrStrangeMR,
+                ScarletWitchMR,
+                BlackWidowMR,
+                SpiderGwenSR,
+                SpidermanSR,
+                VenomSR,
+                BlackPantherSR,
+                WarMachineSR,
+                ScarletWitchSR,
             };
         }
 
