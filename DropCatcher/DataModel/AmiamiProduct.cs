@@ -58,5 +58,11 @@
                 requestUrl = "https://api.amiami.com/api/v1.0/item?scode=CARD-00015049&lang=eng&mcode=7001687591&ransu=mFWqyaFUV5NzXcWXp4bV8xbZggJyxY86",
             };
         }
+
+        public readonly static AmiamiChaseProduct KurumiWristWatch = new()
+        {
+            webUrl = "https://www.amiami.com/eng/detail/?gcode=GOODS-00379065",
+            requestUrl = "https://api.amiami.com/api/v1.0/item?gcode=GOODS-00379065&lang=eng&mcode=7001687591&ransu=mFWqyaFUV5NzXcWXp4bV8xbZggJyxY86",
+        };
     }
 }

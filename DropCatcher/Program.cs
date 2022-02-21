@@ -36,8 +36,20 @@ namespace DropCatcher
             {
                 new YuyuteiDropCatcher(
                     products: YuyuteiProduct.GetMarvelChaseProducts(),
-                    targetDivs: new string[] { StringConstants.TargetDivs.YuyuteiMarvelMR },
+                    targetDivs: new string[]
+                    {
+                        StringConstants.TargetDivs.YuyuteiMarvelMR,
+                        StringConstants.TargetDivs.YuyuteiMarvelSR,
+                    },
                     targetUrl: StringConstants.TargetUrls.YuyuteiMarvel),
+                new YuyuteiDropCatcher(
+                    products: YuyuteiProduct.GetMarvelChaseProducts(),
+                    targetDivs: new string[]
+                    {
+                        StringConstants.TargetDivs.YuyuteiMarvelMR,
+                        StringConstants.TargetDivs.YuyuteiMarvelSR,
+                    },
+                    targetUrl: StringConstants.TargetUrls.YuyuteiMarvelScratched),
                 new YuyuteiDropCatcher(
                     products: YuyuteiProduct.GetKadokawaChaseProducts(),
                     targetDivs: new string[]
@@ -45,8 +57,19 @@ namespace DropCatcher
                         StringConstants.TargetDivs.YuyuteiKadokawaSP,
                         StringConstants.TargetDivs.YuyuteiKadokawaSBR,
                         StringConstants.TargetDivs.YuyuteiKadokawaRRR,
+                        StringConstants.TargetDivs.YuyuteiKadokawaSR,
                     },
                     targetUrl: StringConstants.TargetUrls.YuyuteiKadokawa),
+                new YuyuteiDropCatcher(
+                    products: YuyuteiProduct.GetKadokawaChaseProducts(),
+                    targetDivs: new string[]
+                    {
+                        StringConstants.TargetDivs.YuyuteiKadokawaSP,
+                        StringConstants.TargetDivs.YuyuteiKadokawaSBR,
+                        StringConstants.TargetDivs.YuyuteiKadokawaRRR,
+                        StringConstants.TargetDivs.YuyuteiKadokawaSR,
+                    },
+                    targetUrl: StringConstants.TargetUrls.YuyuteiKadokawaScratched),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.MarvelTrialDeck),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveBoosterBox),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveTrialDeck),
@@ -57,7 +80,7 @@ namespace DropCatcher
 
         public static void WaitAWhile()
         {
-            Thread.Sleep(FiveMinutes);
+            Thread.Sleep(TenMinutes);
 
             /*
             if (DateTime.Now.Hour < 9

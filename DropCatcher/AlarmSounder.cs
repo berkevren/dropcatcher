@@ -47,14 +47,16 @@ namespace DropCatcher
         {
             return new SmtpClient
             {
-                Host = "smtp.live.com",
+                Host = "smtp-mail.outlook.com",
                 Port = 587,
+                UseDefaultCredentials = false,
                 Credentials = new NetworkCredential
                 {
                     UserName = StringConstants.EmailAddresses.Berkzeguet,
                     Password = StringConstants.EmailAddresses.BerkzeguetPassword,
                 },
                 EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
             };
         }
     }
