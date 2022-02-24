@@ -70,6 +70,24 @@ namespace DropCatcher
                         StringConstants.TargetDivs.YuyuteiKadokawaSR,
                     },
                     targetUrl: StringConstants.TargetUrls.YuyuteiKadokawaScratched),
+                new YuyuteiDropCatcher(
+                    products: YuyuteiProduct.GetFujimiChaseProducts(),
+                    targetDivs: new string[]
+                    {
+                        StringConstants.TargetDivs.YuyuteiFujimiFBR,
+                        StringConstants.TargetDivs.YuyuteiFujimiRRR,
+                        StringConstants.TargetDivs.YuyuteiFujimiSR,
+                    },
+                    targetUrl: StringConstants.TargetUrls.YuyuteiFujimi),
+                new YuyuteiDropCatcher(
+                    products: YuyuteiProduct.GetFujimiChaseProducts(),
+                    targetDivs: new string[]
+                    {
+                        StringConstants.TargetDivs.YuyuteiFujimiFBR,
+                        StringConstants.TargetDivs.YuyuteiFujimiRRR,
+                        StringConstants.TargetDivs.YuyuteiFujimiSR,
+                    },
+                    targetUrl: StringConstants.TargetUrls.YuyuteiFujimiScratched),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.MarvelTrialDeck),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveBoosterBox),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveTrialDeck),
