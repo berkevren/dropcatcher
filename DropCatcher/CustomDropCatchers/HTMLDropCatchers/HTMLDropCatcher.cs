@@ -4,6 +4,7 @@ using System.Net;
 using System.Collections.Generic;
 using System.Threading;
 using System.Text;
+using System.IO;
 
 namespace DropCatcher.CustomDropCatchers
 {
@@ -65,11 +66,16 @@ namespace DropCatcher.CustomDropCatchers
             {
                 return web.Load(TargetUrl);
             }
-            catch (WebException)
+            catch (Exception e)
             {
-                // Internet connection interrupted. Try again in five minutes.
-                Thread.Sleep(300000);
-                return this.LoadUrl();
+                if (e is WebException || e is IOException)
+                {
+                    // Internet connection interrupted. Try again in five minutes.
+                    Thread.Sleep(300000);
+                    return this.LoadUrl();
+                }
+
+                throw;
             }
         }
 
