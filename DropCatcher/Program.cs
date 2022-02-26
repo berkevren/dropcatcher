@@ -1,6 +1,7 @@
 ﻿using DropCatcher.CustomDropCatchers.RequestDropCatchers;
 using DropCatcher.CustomDropCatchers.StockBasedDropCatchers;
 using DropCatcher.DataModel;
+using System;
 using System.Threading;
 using CustomDropCatcher = DropCatcher.CustomDropCatchers.DropCatcher;
 
@@ -10,6 +11,7 @@ namespace DropCatcher
     {
         const int OneMinute = 60000;
         const int TwoMinutes = 120000;
+        const int FourMinutes = 240000;
         const int FiveMinutes = 300000;
         const int TenMinutes = 600000;
 
@@ -98,19 +100,17 @@ namespace DropCatcher
 
         public static void WaitAWhile()
         {
-            Thread.Sleep(TenMinutes);
+            // Thread.Sleep(TenMinutes);
 
-            /*
-            if (DateTime.Now.Hour < 9
-                    || DateTime.Now.Hour > 19)
+            if (DateTime.Now.Hour < 1
+                    || DateTime.Now.Hour > 4)
             {
                 Thread.Sleep(TenMinutes);
             }
             else
             {
-                Thread.Sleep(TwoMinutes);
+                Thread.Sleep(FourMinutes);
             }
-            */
         }
     }
 }
