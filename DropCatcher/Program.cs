@@ -1,4 +1,5 @@
-﻿using DropCatcher.CustomDropCatchers.RequestDropCatchers;
+﻿using DropCatcher.CustomDropCatchers.ListingBasedDropCatchers;
+using DropCatcher.CustomDropCatchers.RequestDropCatchers;
 using DropCatcher.CustomDropCatchers.StockBasedDropCatchers;
 using DropCatcher.DataModel;
 using System;
@@ -32,10 +33,13 @@ namespace DropCatcher
 
         public static CustomDropCatcher[] GetDropCatchers()
         {
-            // var safariZoneDropCatcher = new SafariZoneDropCatcher(thingsToLookOutFor: new string[] { "Evolving", "evolving", "Chilling", "chilling", "marnie", "Marnie" });
-            // var gameNerdzDropCatcher = new GameNerdzDropCatcher();
             return new CustomDropCatcher[]
             {
+                new SafariZoneDropCatcher(
+                    thingsToLookOutFor: new string[]
+                    {
+                        "Holo", "Live", "Hololive", "Holo-live", "HoloLive",
+                    }),
                 new YuyuteiDropCatcher(
                     products: YuyuteiProduct.GetMarvelChaseProducts(),
                     targetDivs: new string[]
@@ -93,6 +97,7 @@ namespace DropCatcher
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.MarvelTrialDeck),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveBoosterBox),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveTrialDeck),
+                new AmiamiDropCatcher(AmiamiChaseProduct.KurumiSwimsuit),
                 new AmiamiDropCatcher(AmiamiChaseProduct.Pokemon.VMAXClimaxBoosterBox),
                 new AmiamiDropCatcher(AmiamiChaseProduct.Pokemon.TwentyFifthAnniversaryBoosterBox),
             };

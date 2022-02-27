@@ -16,8 +16,7 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
             int numberOfProductsOnTargetUrl,
             string targetUrl,
             string alarmMessage,
-            string emailSubject,
-            string fileLoggerPath)
+            string emailSubject)
             : base(
                   new string[] { targetDiv },
                   thingsToLookOutFor,
@@ -26,7 +25,6 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
                   emailSubject)
         {
             this.NumberOfProductsOnTargetUrl = numberOfProductsOnTargetUrl;
-            this.FileLogger = new FileLogger(path: fileLoggerPath);
         }
 
         // Gets the products from a target url and returns all the products as a file-ready string.
@@ -40,15 +38,12 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
             }
 
             var fileFormattedProducts = this.ToFileFormat(products);
-            if (this.FileLogger.WriteFileIfNewProductIsFound(fileFormattedProducts, this.NumberOfProductsOnTargetUrl))
+            // if there is a goal product, only sound the horns if it is found
+            if (this.ThingsToLookOutFor != null
+                && this.ThingsToLookOutFor.Length > 0
+                && this.GoalProductIsFound(fileFormattedProducts, this.ThingsToLookOutFor))
             {
-                // if there is a goal product, only sound the horns if it is found
-                if (this.ThingsToLookOutFor != null
-                    && this.ThingsToLookOutFor.Length > 0
-                    && this.GoalProductIsFound(fileFormattedProducts, this.ThingsToLookOutFor))
-                {
-                    return fileFormattedProducts;
-                }
+                return fileFormattedProducts;
             }
 
             return string.Empty;

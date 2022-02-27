@@ -11,8 +11,7 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
                   numberOfProductsOnTargetUrl: 20,
                   targetUrl: "https://www.gamenerdz.com/pokemon?sort=newest",
                   alarmMessage: "New Game Nerdz Drop!",
-                  emailSubject: "New Game Nerdz Drop!",
-                  fileLoggerPath: "C:/Users/beabbaso/Documents/GameNerdzProductList.txt")
+                  emailSubject: "New Game Nerdz Drop!")
         {
         }
 

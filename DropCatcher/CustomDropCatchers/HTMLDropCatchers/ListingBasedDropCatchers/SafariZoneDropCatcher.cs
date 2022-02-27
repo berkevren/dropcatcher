@@ -7,10 +7,9 @@
                   targetDiv: "//div[@class='product-card__name']  ",
                   thingsToLookOutFor: thingsToLookOutFor,
                   numberOfProductsOnTargetUrl: 4,
-                  targetUrl: "https://safari-zone.com/",
+                  targetUrl: "https://safari-zone.com/search?q=weiss",
                   alarmMessage: "New Safari Zone Drop!",
-                  emailSubject: "New Safari Zone Drop!",
-                  fileLoggerPath: "C:/Users/beabbaso/Documents/SafariZoneProductList.txt")
+                  emailSubject: "New Safari Zone Drop!")
         {
         }
     }
