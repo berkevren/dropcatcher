@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Net;
+using System.Threading;
 
 namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
 {
@@ -33,9 +34,18 @@ namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
         /// <returns>JSON resposne.</returns>
         protected string GetProductJSON(WebRequest request)
         {
-            using var stream = request.GetResponse().GetResponseStream();
-            using var streamReader = new StreamReader(stream);
-            return streamReader.ReadToEnd();
+            try
+            {
+                using Stream stream = request.GetResponse().GetResponseStream();
+                using var streamReader = new StreamReader(stream);
+                return streamReader.ReadToEnd();
+            }
+            catch (WebException)
+            {
+                // Internet connection interrupted. Try again in five minutes.
+                Thread.Sleep(300000);
+                return this.GetProductJSON(request);
+            }
         }
 
         protected abstract WebRequest CreateRequest();

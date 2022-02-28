@@ -40,7 +40,7 @@
             public readonly static AmiamiChaseProduct HololiveBoosterBox = new()
             {
                 webUrl = "https://www.amiami.com/eng/detail/?gcode=CARD-00014812",
-                requestUrl = "https://api.amiami.com/api/v1.0/item?gcode=CARD-00014812&lang=eng&mcode=7001687591&ransu=mFWqyaFUV5NzXcWXp4bV8xbZggJyxY86",
+                requestUrl = "https://api.amiami.com/api/v1.0/item?scode=CARD-00014812-S002&lang=eng",
             };
         }
 
