@@ -26,7 +26,7 @@ namespace DropCatcher
 
         public void SoundTheAlarm(string alarm)
         {
-            this.synthesizer.Speak(alarm);
+            // this.synthesizer.Speak(alarm);
         }
 
         public void SendEmail(string products)
@@ -38,7 +38,6 @@ namespace DropCatcher
                 Body = String.Concat(this.linkToProducts, "\n", products)
             };
             message.To.Add(StringConstants.EmailAddresses.BerkAbbasoglu);
-            message.To.Add(StringConstants.EmailAddresses.CemEkm);
 
             this.smtpClient.Send(message);
         }

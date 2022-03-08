@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
@@ -9,6 +10,8 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
         public int NumberOfProductsOnTargetUrl { get; protected set; }
 
         public FileLogger FileLogger { get; protected set; }
+
+        private List<string> FoundProducts { get; set; }
 
         public ListingBasedDropCatcher(
             string targetDiv,
@@ -25,6 +28,7 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
                   emailSubject)
         {
             this.NumberOfProductsOnTargetUrl = numberOfProductsOnTargetUrl;
+            this.FoundProducts = new List<string>();
         }
 
         // Gets the products from a target url and returns all the products as a file-ready string.
@@ -41,7 +45,8 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
             // if there is a goal product, only sound the horns if it is found
             if (this.ThingsToLookOutFor != null
                 && this.ThingsToLookOutFor.Length > 0
-                && this.GoalProductIsFound(fileFormattedProducts, this.ThingsToLookOutFor))
+                && this.GoalProductIsFound(fileFormattedProducts, this.ThingsToLookOutFor)
+                && this.IncludesNewProduct(products))
             {
                 return fileFormattedProducts;
             }
@@ -57,6 +62,13 @@ namespace DropCatcher.CustomDropCatchers.ListingBasedDropCatchers
             }
 
             base.AssertAllFieldsAreValid();
+        }
+
+        private bool IncludesNewProduct(List<string> latestProducts)
+        {
+            var newProductsFound = !this.FoundProducts.SequenceEqual(latestProducts);
+            this.FoundProducts = latestProducts;
+            return newProductsFound;
         }
     }
 }

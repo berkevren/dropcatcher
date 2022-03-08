@@ -35,11 +35,7 @@ namespace DropCatcher
         {
             return new CustomDropCatcher[]
             {
-                new SafariZoneDropCatcher(
-                    thingsToLookOutFor: new string[]
-                    {
-                        "Holo", "Live", "Hololive", "Holo-live", "HoloLive",
-                    }),
+                // GetSafariZoneDropCatcher(),
                 new YuyuteiDropCatcher(
                     products: YuyuteiProduct.GetMarvelChaseProducts(),
                     targetDivs: new string[]
@@ -94,6 +90,7 @@ namespace DropCatcher
                         StringConstants.TargetDivs.YuyuteiFujimiSR,
                     },
                     targetUrl: StringConstants.TargetUrls.YuyuteiFujimiScratched),
+                new TCGPlayerDropCatcher(TCGPlayerChaseProduct.WeissSchwarz.RoxyTDSP),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.MarvelTrialDeck),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveBoosterBox),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveTrialDeck),
@@ -116,6 +113,15 @@ namespace DropCatcher
             {
                 Thread.Sleep(FourMinutes);
             }
+        }
+
+        private static SafariZoneDropCatcher GetSafariZoneDropCatcher()
+        {
+            return new SafariZoneDropCatcher(
+                    thingsToLookOutFor: new string[]
+                    {
+                        "Holo", "Live", "Hololive", "Holo-live", "HoloLive",
+                    });
         }
     }
 }

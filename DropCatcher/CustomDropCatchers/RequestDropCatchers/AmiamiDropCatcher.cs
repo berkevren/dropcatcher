@@ -10,16 +10,14 @@ namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
         private const string AlarmMessageAmiami = "Ah me ah me Drop! Ah me ah me Drop! Ah me ah me Drop!";
         private const string EmailSubject = "Amiami Drop!";
         private List<string> foundProductNames;
-
-        protected string RequestUrl { get; private set; }
         
         public AmiamiDropCatcher(AmiamiChaseProduct amiamiChaseProduct)
             : base(
                   amiamiChaseProduct.webUrl,
                   AlarmMessageAmiami,
-                  EmailSubject)
+                  EmailSubject,
+                  amiamiChaseProduct.requestUrl)
         {
-            this.RequestUrl = amiamiChaseProduct.requestUrl;
             this.foundProductNames = new();
         }
 
@@ -32,26 +30,26 @@ namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
             return request;
         }
 
-        protected override AmiamiProduct SerializeJSONReponse(string response)
-        {
-            return JsonConvert.DeserializeObject<AmiamiProduct>(response);
-        }
-
         protected override bool IsProductInStock(object product, out string productName)
         {
             if (product is AmiamiProduct amiamiProduct)
             {
                 productName = amiamiProduct.item.gname;
                 if (amiamiProduct.IsInStock()
-                    && !this.foundProductNames.Contains(amiamiProduct.item.gname))
+                    && !this.foundProductNames.Contains(productName))
                 {
-                    this.foundProductNames.Add(amiamiProduct.item.gname);
+                    this.foundProductNames.Add(productName);
                     return true;
                 }
             }
 
             productName = string.Empty;
             return false;
+        }
+
+        protected override AmiamiProduct SerializeJSONReponse(string response)
+        {
+            return JsonConvert.DeserializeObject<AmiamiProduct>(response);
         }
     }
 }

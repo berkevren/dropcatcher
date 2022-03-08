@@ -6,15 +6,19 @@ namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
 {
     public abstract class RequestDropCatcher : DropCatcher
     {
+        protected string RequestUrl { get; private set; }
+
         public RequestDropCatcher(
             string targetUrl,
             string customAlarmMessage,
-            string emailSubject)
+            string emailSubject,
+            string requestUrl)
             : base(
                   targetUrl,
                   customAlarmMessage,
                   emailSubject)
         {
+            this.RequestUrl = requestUrl;
         }
 
         public override void CheckForProducts()
@@ -44,7 +48,8 @@ namespace DropCatcher.CustomDropCatchers.RequestDropCatchers
             {
                 // Internet connection interrupted. Try again in five minutes.
                 Thread.Sleep(300000);
-                return this.GetProductJSON(request);
+                var newRequest = this.CreateRequest();
+                return this.GetProductJSON(newRequest);
             }
         }
 

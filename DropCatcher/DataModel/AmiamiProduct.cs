@@ -42,6 +42,12 @@
                 webUrl = "https://www.amiami.com/eng/detail/?gcode=CARD-00014812",
                 requestUrl = "https://api.amiami.com/api/v1.0/item?scode=CARD-00014812-S002&lang=eng",
             };
+
+            public readonly static AmiamiChaseProduct HololiveBoosterBoxExpo = new()
+            {
+                webUrl = "https://www.amiami.com/eng/detail?gcode=CARD-00017119",
+                requestUrl = "https://api.amiami.com/api/v1.0/item?gcode=CARD-00017119&lang=eng",
+            };
         }
 
         public class Pokemon

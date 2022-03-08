@@ -8,7 +8,7 @@ namespace DropCatcher.CustomDropCatchers
 
         public string AlarmMessage { get; protected set; }
 
-        public AlarmSounder AlarmSounder { get; protected set; }
+        public string emailSubject { get; protected set; }
 
         public DropCatcher(
             string targetUrl,
@@ -17,17 +17,14 @@ namespace DropCatcher.CustomDropCatchers
         {
             this.TargetUrl = targetUrl;
             this.AlarmMessage = customAlarmMessage;
-            this.AlarmSounder = new AlarmSounder(
-                linkToProducts: this.TargetUrl,
-                messageSubject: emailSubject);
+            this.emailSubject = emailSubject;
         }
 
         public abstract void CheckForProducts();
 
         protected virtual void AssertAllFieldsAreValid()
         {
-            if (this.TargetUrl == null
-                || this.AlarmSounder == null)
+            if (this.TargetUrl == null)
             {
                 throw new NullReferenceException("all fields must be set!");
             }
@@ -35,8 +32,11 @@ namespace DropCatcher.CustomDropCatchers
 
         protected void SoundTheHornsAndSendTheRavens(string products)
         {
-            this.AlarmSounder.SoundTheAlarm(this.AlarmMessage + products);
-            this.AlarmSounder.SendEmail(products);
+            var alarmSounder = new AlarmSounder(
+                linkToProducts: this.TargetUrl,
+                messageSubject: emailSubject);
+            alarmSounder.SoundTheAlarm(this.AlarmMessage + products);
+            alarmSounder.SendEmail(products);
         }
     }
 }
