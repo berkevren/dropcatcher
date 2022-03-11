@@ -91,6 +91,7 @@ namespace DropCatcher
                     },
                     targetUrl: StringConstants.TargetUrls.YuyuteiFujimiScratched),
                 new TCGPlayerDropCatcher(TCGPlayerChaseProduct.WeissSchwarz.RoxyTDSP),
+                new TCGPlayerDropCatcher(TCGPlayerChaseProduct.WeissSchwarz.KurumiStampedPromo),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.MarvelTrialDeck),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveBoosterBox),
                 new AmiamiDropCatcher(AmiamiChaseProduct.WeissSchwarz.HololiveTrialDeck),

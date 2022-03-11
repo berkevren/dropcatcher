@@ -33,6 +33,13 @@ namespace DropCatcher.DataModel
                 requestUrl = "https://mpapi.tcgplayer.com/v2/product/265238/listings",
                 title = "Roxy TD SP Jobless Reincarnation",
             };
+
+            public readonly static TCGPlayerChaseProduct KurumiStampedPromo = new()
+            {
+                webUrl = "https://www.tcgplayer.com/product/234761/weiss-schwarz-bushiroad-event-cards-kurumi-tokisaki-spring-fest-2021?xid=pi88b689b5-13d8-4063-a224-4534f81e26f2&page=1&Language=English",
+                requestUrl = "https://mpapi.tcgplayer.com/v2/product/234761/listings",
+                title = "Kurumi Congratulations Stamped Promo",
+            };
         }
     }
 }
